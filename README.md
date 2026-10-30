@@ -1,22 +1,16 @@
-# ADK Food — V3 : validation automatique des objectifs
+# ADK Food V4 — Mise à jour et validation automatique
 
-## Nouveauté
-- Dès qu’une quantité saisie est **supérieure ou égale à l’objectif** défini pour le service, la case **OK** du produit se coche automatiquement.
-- Si la quantité est inférieure à l’objectif, la case est décochée et le manque exact est indiqué.
-- Si la quantité est effacée, la case OK se décoche.
-- Sans objectif défini, la case reste à cocher manuellement.
-- Les manques figurent dans le rapport e-mail **même lorsque la case OK est décochée**.
-- Les objectifs restent modifiables dans l’onglet « Objectifs ».
+- Même adresse web GitHub Pages, aucune nouvelle URL requise.
+- En haut de la page le numéro **V4** confirme que la mise à jour est chargée.
+- La case OK se coche lorsque quantité >= objectif du service; elle se décoche si la quantité devient insuffisante.
+- La case reste décochée si aucune quantité n’est renseignée; sans objectif, elle est manuelle.
+- Nouveau service worker *network-first* : met à jour les fichiers en ligne tout en permettant une utilisation hors connexion.
 
-## Mettre à jour GitHub Pages
-1. Décompresser ce ZIP.
-2. Ouvrir le dépôt GitHub `adk-food-checklist`.
-3. Importer tous les fichiers décompressés à la racine (remplacer les fichiers existants).
-4. Valider avec « Commit changes ».
-5. Recharger le site sur Android connecté à Internet ; si l’ancienne version persiste, fermer puis rouvrir l’application ou vider uniquement le cache du site (ne pas supprimer les données du site).
+## Déploiement GitHub
+1. Décompresser le ZIP.
+2. Importer **les fichiers à la racine** du dépôt GitHub (écraser les mêmes noms), valider le commit.
+3. Dans GitHub, vérifier Actions/Pages que le déploiement est terminé.
+4. Sur Android ouvrir l'URL du site dans Chrome (pas l'icône de l'application), puis actualiser; le haut doit indiquer V4.
+5. Une fois V4 visible, ouvrir l'application depuis l'icône. Si l'ancienne version reste, fermer l'application et la relancer tout en étant connecté à Internet.
 
-## Envoi de rapport
-Le bouton ouvre une application mail avec le rapport prérempli pour contact@adk-food.fr ; le responsable confirme l’envoi.
-
-## Données
-Les contrôles demeurent stockés sur chaque appareil (localStorage). Exporter régulièrement la sauvegarde JSON.
+**Important :** Ne supprimez pas les données du site ni l'application sans exporter une sauvegarde JSON, sinon l'historique peut être perdu.

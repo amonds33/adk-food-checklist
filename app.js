@@ -1,5 +1,6 @@
 'use strict';
 const KEY='adk-food-pwa-v1';
+const APP_VERSION='V4';
 const CATALOG=[
 ['Plats','Poulet sauté','portions'],['Plats','Tilapia frit','poissons'],['Plats','Thon garba','portions'],['Plats','Thieb','portions'],['Plats','Yassa','portions'],['Plats','Mafé','portions'],['Plats','Sauce graine','portions'],['Plats','Poisson capitaine frit','poissons'],['Plats','Kedjenou','portions'],['Plats','Poisson braisé (tilapia mariné)','poissons'],['Plats','Poulet mariné braisé','portions'],
 ['Accompagnements','Attiéké','portions'],['Accompagnements','Banane alloco','portions'],['Accompagnements','Placali','portions'],['Accompagnements','Foutou','portions'],
@@ -112,5 +113,7 @@ const cell=x=>'"'+String(x??'').replace(/"/g,'""')+'"';
 $('exportCsv').onclick=()=>{const rows=[['Date','Service','Responsable','Produit','Catégorie','Unité','Vérifié','Quantité disponible','Objectif actuel','Remarque']];Object.values(db.checks).forEach(rec=>CATALOG.forEach(p=>rows.push([rec.date,rec.shift,rec.manager,p.name,p.cat,p.unit,rec.items?.[p.id]?.checked?'Oui':'Non',rec.items?.[p.id]?.qty??'',db.targets[p.id]?.[rec.shift==='midi'?0:1]??'',rec.notes||''])));download('\ufeff'+rows.map(r=>r.map(cell).join(';')).join('\r\n'),'adk-historique-'+dateLocal()+'.csv','text/csv;charset=utf-8')};
 $('importJson').addEventListener('change',async e=>{const file=e.target.files?.[0];if(!file)return;try{const obj=JSON.parse(await file.text());if(obj.exportVersion!==1||!obj.data||!obj.data.targets||!obj.data.checks||typeof obj.data.checks!=='object')throw Error('Format non reconnu');if(!confirm('Remplacer TOUTES les données présentes par cette sauvegarde ?'))return;db=obj.data;if(persist()){renderChecks();$('backupStatus').textContent='Sauvegarde restaurée.'}}catch(err){alert('Sauvegarde invalide : '+err.message)}finally{e.target.value=''}});
 function updateConnection(){$('connectivity').textContent=navigator.onLine?'En ligne':'Hors ligne'}window.addEventListener('online',updateConnection);window.addEventListener('offline',updateConnection);updateConnection();
-if('serviceWorker'in navigator && location.protocol.startsWith('http'))navigator.serviceWorker.register('./sw.js').catch(()=>{});
+if('serviceWorker' in navigator && location.protocol.startsWith('http')) {
+ navigator.serviceWorker.register('./sw.js?v=4', {updateViaCache:'none'}).then(reg=>reg.update()).catch(()=>{});
+}
 renderChecks();
