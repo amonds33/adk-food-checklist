@@ -1,4 +1,4 @@
-const CACHE = 'adk-check-v2-logo-email';
+const CACHE = 'adk-check-v3-auto-ok';
 const FILES = ['./', './index.html', './app.js', './styles.css', './manifest.webmanifest', './icon-192.png', './icon-512.png', './logo-adk.png'];
 self.addEventListener('install', event => event.waitUntil(
   caches.open(CACHE).then(cache => cache.addAll(FILES)).then(() => self.skipWaiting())

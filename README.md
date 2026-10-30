@@ -1,20 +1,22 @@
-# ADK Food — Version 2 : logo et rapport e-mail
+# ADK Food — V3 : validation automatique des objectifs
 
-## Ce qui a été ajouté
-- Logo officiel Abidjan-Dakar Food dans l’en-tête et sur les icônes Android.
-- Bouton **Envoyer le rapport par e-mail**, adressé à contact@adk-food.fr.
-- Rapport avec date, service, responsable, produits vérifiés, quantités, objectifs, manques et remarques.
-- Les contrôles doivent être enregistrés avant de préparer le message.
+## Nouveauté
+- Dès qu’une quantité saisie est **supérieure ou égale à l’objectif** défini pour le service, la case **OK** du produit se coche automatiquement.
+- Si la quantité est inférieure à l’objectif, la case est décochée et le manque exact est indiqué.
+- Si la quantité est effacée, la case OK se décoche.
+- Sans objectif défini, la case reste à cocher manuellement.
+- Les manques figurent dans le rapport e-mail **même lorsque la case OK est décochée**.
+- Les objectifs restent modifiables dans l’onglet « Objectifs ».
 
-**Important :** l’envoi n’est PAS automatique. Le bouton ouvre le client e-mail (Gmail, etc.) avec un brouillon prérempli ; une personne doit confirmer l’envoi. Une application mail configurée est nécessaire, ainsi qu'Internet pour envoyer le message. L'application de check-list continue à fonctionner hors connexion.
+## Mettre à jour GitHub Pages
+1. Décompresser ce ZIP.
+2. Ouvrir le dépôt GitHub `adk-food-checklist`.
+3. Importer tous les fichiers décompressés à la racine (remplacer les fichiers existants).
+4. Valider avec « Commit changes ».
+5. Recharger le site sur Android connecté à Internet ; si l’ancienne version persiste, fermer puis rouvrir l’application ou vider uniquement le cache du site (ne pas supprimer les données du site).
 
-## Installation via GitHub Pages
-1. Ouvrir https://github.com/new et créer un dépôt PUBLIC nommé `adk-food-checklist` (cocher Add a README si nécessaire pour initialiser).
-2. Dans le dépôt, choisir **Add file → Upload files**. Décompresser le ZIP et importer **les fichiers qui se trouvent DANS le dossier**, directement à la racine du dépôt (index.html, app.js, styles.css, logo-adk.png, les icônes, manifest.webmanifest, sw.js, .nojekyll). Ne pas téléverser seulement le ZIP.
-3. Cliquer sur **Commit changes** (ou Propose changes selon l'interface ; confirmer le commit).
-4. Dans **Settings → Pages**, choisir Source `Deploy from a branch`, Branch `main`, Dossier `/ (root)` puis Save.
-5. Ouvrir `https://NOM-UTILISATEUR.github.io/adk-food-checklist/` sur Chrome Android, puis dans le menu ⋮ choisir `Installer l'application` ou `Ajouter à l'écran d'accueil`.
-6. Choisir Objectifs, configurer les quantités midi/soir, remplir un contrôle, enregistrer, puis appuyer sur `Envoyer le rapport par e-mail`. Vérifier le brouillon dans Gmail puis l'envoyer.
+## Envoi de rapport
+Le bouton ouvre une application mail avec le rapport prérempli pour contact@adk-food.fr ; le responsable confirme l’envoi.
 
-## Confidentialité et stockage
-Les données restent sur le téléphone/la tablette où la check-list est utilisée (localStorage). Un autre téléphone n'a pas le même historique. GitHub Pages héberge seulement le code public de l'application, pas les rapports ni les données locales. Faire une sauvegarde JSON régulièrement. Ne pas mettre de secrets dans le dépôt public.
+## Données
+Les contrôles demeurent stockés sur chaque appareil (localStorage). Exporter régulièrement la sauvegarde JSON.
